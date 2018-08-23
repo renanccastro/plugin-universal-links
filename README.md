@@ -49,13 +49,13 @@ It is important not only to redirect users to your app from the web, but also pr
 This requires cordova 5.0+ (current stable 1.2.1)
 
 ```sh
-cordova plugin add cordova-universal-links-plugin
+cordova plugin add fairmanager-cordova-plugin-universal-link
 ```
 
 It is also possible to install via repo url directly (**unstable**)
 
 ```sh
-cordova plugin add https://github.com/nordnet/cordova-universal-links-plugin.git
+cordova plugin add https://github.com/fairmanager-cordova/plugin-universal-link.git
 ```
 
 ### Migrating from previous versions
@@ -117,14 +117,14 @@ If you are still using Xcode 6 and there is no way for you to upgrade right now 
   ```sh
   mkdir /Workspace/Mobile/CordovaPlugins
   cd /Workspace/Mobile/CordovaPlugins
-  git clone -b xcode6-support https://github.com/nordnet/cordova-universal-links-plugin.git
+  git clone -b xcode6-support https://github.com/nordnet/fairmanager-cordova-plugin-universal-link.git
   ```
 
 2. Go to your applications project and add plugin from the cloned source:
 
   ```sh
   cd /Workspace/Mobile/CoolApp
-  cordova plugin add /Workspace/Mobile/CordovaPlugins/cordova-universal-links-plugin/
+  cordova plugin add /Workspace/Mobile/CordovaPlugins/fairmanager-cordova-plugin-universal-link/
   ```
 
 Now you can build your project in Xcode 6.
@@ -305,7 +305,7 @@ This is iOS-only preference, Android doesn't need it.
 
 #### Prevent Android from creating multiple app instances
 
-When clicking on a universal link from another App (typically from an email client), Android will likely create a new instance of your app, even if it is already loaded in memory. It may even create a new instance with each click, resulting in many instances of your app in the task switcher. See details in [issue #37](https://github.com/nordnet/cordova-universal-links-plugin/issues/37).
+When clicking on a universal link from another App (typically from an email client), Android will likely create a new instance of your app, even if it is already loaded in memory. It may even create a new instance with each click, resulting in many instances of your app in the task switcher. See details in [issue #37](https://github.com/nordnet/fairmanager-cordova-plugin-universal-link/issues/37).
 
 To force Android opening always the same app instance, a known workaround is to change the [activity launch mode](https://developer.android.com/guide/topics/manifest/activity-element.html#lmode) to `singleInstance`. To do so, you can use the following preference in Cordova `config.xml` file:
 ```xml
@@ -370,7 +370,7 @@ Now it's time for some examples. In here we are gonna use Android, because it is
 2. Add UL plugin:
 
   ```sh
-  cordova plugin add cordova-universal-links-plugin
+  cordova plugin add fairmanager-cordova-plugin-universal-link
   ```
 
 3. Add `<universal-links>` preference into `config.xml`:
@@ -638,7 +638,7 @@ Let's create new application to play with:
 2. Add UL plugin:
 
   ```sh
-  cordova plugin add cordova-universal-links-plugin
+  cordova plugin add fairmanager-cordova-plugin-universal-link
   ```
 
 3. Add `<universal-links>` preference into `config.xml` (`TestAndroidApp/config.xml`):
@@ -830,7 +830,7 @@ Step-by-step guide:
   cordova create TestProject com.example.ul TestProject
   cd ./TestProject
   cordova platform add ios
-  cordova plugin add cordova-universal-links-plugin
+  cordova plugin add fairmanager-cordova-plugin-universal-link
   ```
 
 6. Add `bnc.lt` and your other hosts into `config.xml`:
