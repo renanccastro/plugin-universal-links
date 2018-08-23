@@ -1,9 +1,9 @@
 {
-  "name": "cordova-universal-links-plugin",
+  "name": "fairmanager-cordova-plugin-universal-links",
   "version": "1.2.1",
   "description": "Cordova plugin to add in your application support for Universal Links (iOS 9) and Deep Links (Android). Basically, open application through the link in the browser.",
   "cordova": {
-    "id": "cordova-universal-links-plugin",
+    "id": "fairmanager-cordova-plugin-universal-links",
     "platforms": [
       "ios",
       "android"
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nordnet/cordova-universal-links-plugin.git"
+    "url": "git+https://github.com/fairmanager-cordova/plugin-universal-links.git"
   },
   "keywords": [
     "cordova",
@@ -25,16 +25,6 @@
     "ios",
     "android"
   ],
-  "engines": [
-    {
-      "name": "cordova-ios",
-      "version": ">=3.8"
-    },
-    {
-      "name": "cordova-android",
-      "version": ">=4"
-    }
-  ],
   "dependencies": {
     "mkpath": ">=1.0.0",
     "xml2js": ">=0.4",
@@ -45,7 +35,10 @@
   "author": "Nikolay Demyankov for Nordnet Bank AB",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nordnet/cordova-universal-links-plugin/issues"
+    "url": "https://github.com/fairmanager-cordova/plugin-universal-links/issues"
   },
-  "homepage": "https://github.com/nordnet/cordova-universal-links-plugin#readme"
+  "homepage": "https://github.com/fairmanager-cordova/plugin-universal-links#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
 }
