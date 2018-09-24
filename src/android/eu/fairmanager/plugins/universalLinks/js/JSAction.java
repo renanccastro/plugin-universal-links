@@ -1,4 +1,4 @@
-package com.nordnetab.cordova.ul.js;
+package eu.fairmanager.plugins.universalLinks.js;
 
 /**
  * Created by Nikolay Demyankov on 09.09.15.

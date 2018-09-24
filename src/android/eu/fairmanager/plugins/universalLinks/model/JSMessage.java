@@ -1,4 +1,4 @@
-package com.nordnetab.cordova.ul.model;
+package eu.fairmanager.plugins.universalLinks.model;
 
 import android.net.Uri;
 import android.util.Log;

@@ -1,4 +1,4 @@
-package com.nordnetab.cordova.ul;
+package eu.fairmanager.plugins.universalLinks;
 
 import android.content.Intent;
 import android.net.Uri;

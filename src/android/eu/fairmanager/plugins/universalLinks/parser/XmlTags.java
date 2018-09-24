@@ -1,4 +1,4 @@
-package com.nordnetab.cordova.ul.parser;
+package eu.fairmanager.plugins.universalLinks.parser;
 
 /**
  * Created by Nikolay Demyankov on 10.09.15.
