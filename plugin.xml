@@ -27,7 +27,7 @@
 	<platform name="android">
 		<config-file parent="/*" target="res/xml/config.xml">
 			<feature name="UniversalLinks">
-				<param name="android-package" value="eu.fairmanager.plugins.UniversalLinks"/>
+				<param name="android-package" value="eu.fairmanager.plugins.universalLinks.UniversalLinks"/>
 				<param name="onload" value="true"/>
 			</feature>
 		</config-file>
