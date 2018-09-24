@@ -41,7 +41,7 @@
 		<source-file src="src/android/eu/fairmanager/plugins/universalLinks/parser/ULConfigXmlParser.java" target-dir="src/eu/fairmanager/plugins/universalLinks/parser/"/>
 		<source-file src="src/android/eu/fairmanager/plugins/universalLinks/parser/XmlTags.java" target-dir="src/eu/fairmanager/plugins/universalLinks/parser/"/>
 
-		<source-file src="src/android/eu/fairmanager/plugins/universalLinks/UniversalLinksPlugin.java" target-dir="src/eu/fairmanager/plugins/universalLinks/"/>
+		<source-file src="src/android/eu/fairmanager/plugins/universalLinks/UniversalLinks.java" target-dir="src/eu/fairmanager/plugins/universalLinks/"/>
 	</platform>
 
 	<platform name="ios">

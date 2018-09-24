@@ -29,7 +29,7 @@ import java.util.Set;
  * Plugin main class.
  * Communicates with the JS side, handles launch intents and so on.
  */
-public class UniversalLinksPlugin extends CordovaPlugin {
+public class UniversalLinks extends CordovaPlugin {
 
     // list of hosts, defined in config.xml
     private List<ULHost> supportedHosts;
