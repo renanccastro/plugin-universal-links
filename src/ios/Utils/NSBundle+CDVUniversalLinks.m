@@ -1,12 +1,12 @@
 //
-//  NSBundle+CULPlugin.m
+//  NSBundle+CDVUniversalLinks.m
 //
 //  Created by Nikolay Demyankov on 15.09.15.
 //
 
-#import "NSBundle+CULPlugin.h"
+#import "NSBundle+CDVUniversalLinks.h"
 
-@implementation NSBundle (CULPlugin)
+@implementation NSBundle (CDVUniversalLinks)
 
 + (NSString *)pathToCordovaConfigXml {
     return [[NSBundle mainBundle] pathForResource:@"config" ofType:@"xml"];

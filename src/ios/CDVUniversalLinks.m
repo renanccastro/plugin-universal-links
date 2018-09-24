@@ -1,18 +1,18 @@
 //
-//  CULPlugin.m
+//  CDVUniversalLinks.m
 //
 //  Created by Nikolay Demyankov on 14.09.15.
 //
 
-#import "CULPlugin.h"
+#import "CDVUniversalLinks.h"
 #import "CULConfigXmlParser.h"
 #import "CULPath.h"
 #import "CULHost.h"
-#import "CDVPluginResult+CULPlugin.h"
-#import "CDVInvokedUrlCommand+CULPlugin.h"
+#import "CDVPluginResult+CDVUniversalLinks.h"
+#import "CDVInvokedUrlCommand+CDVUniversalLinks.h"
 #import "CULConfigJsonParser.h"
 
-@interface CULPlugin() {
+@interface CDVUniversalLinks() {
     NSArray *_supportedHosts;
     CDVPluginResult *_storedEvent;
     NSMutableDictionary<NSString *, NSString *> *_subscribers;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation CULPlugin
+@implementation CDVUniversalLinks
 
 #pragma mark Public API
 
@@ -34,7 +34,7 @@
 //- (void)onResume:(NSNotification *)notification {
 //    NSUserActivity *activity = [[NSUserActivity alloc] initWithActivityType:NSUserActivityTypeBrowsingWeb];
 //    [activity setWebpageURL:[NSURL URLWithString:@"http://site2.com/news/page?q=1&v=2#myhash"]];
-//    
+//
 //    [self handleUserActivity:activity];
 //}
 
@@ -43,7 +43,7 @@
     if (![url isKindOfClass:[NSURL class]]) {
         return;
     }
-    
+
     CULHost *host = [self findHostByURL:url];
     if (host) {
         [self storeEventWithHost:host originalURL:url];
@@ -52,15 +52,15 @@
 
 - (BOOL)handleUserActivity:(NSUserActivity *)userActivity {
     [self localInit];
-    
+
     NSURL *launchURL = userActivity.webpageURL;
     CULHost *host = [self findHostByURL:launchURL];
     if (host == nil) {
         return NO;
     }
-    
+
     [self storeEventWithHost:host originalURL:launchURL];
-    
+
     return YES;
 }
 
@@ -68,7 +68,7 @@
     _supportedHosts = nil;
     _subscribers = nil;
     _storedEvent = nil;
-    
+
     [super onAppTerminate];
 }
 
@@ -78,9 +78,9 @@
     if (_supportedHosts) {
         return;
     }
-    
+
     _subscribers = [[NSMutableDictionary alloc] init];
-    
+
     // Get supported hosts from the config.xml or www/ul.json.
     // For now priority goes to json config.
     _supportedHosts = [self getSupportedHostsFromPreferences];
@@ -91,7 +91,7 @@
     if (jsonConfigPath) {
         return [CULConfigJsonParser parseConfig:jsonConfigPath];
     }
-    
+
     return [CULConfigXmlParser parse];
 }
 
@@ -123,7 +123,7 @@
             break;
         }
     }
-    
+
     return host;
 }
 
@@ -131,14 +131,14 @@
 
 /**
  *  Try to send event to the web page.
- *  If there is a subscriber for the event - it will be consumed. 
+ *  If there is a subscriber for the event - it will be consumed.
  *  If not - it will stay until someone subscribes to it.
  */
 - (void)tryToConsumeEvent {
     if (_subscribers.count == 0 || _storedEvent == nil) {
         return;
     }
-    
+
     NSString *storedEventName = [_storedEvent eventName];
     for (NSString *eventName in _subscribers) {
         if ([storedEventName isEqualToString:eventName]) {
@@ -157,7 +157,7 @@
     if (eventName.length == 0) {
         return;
     }
-    
+
     _subscribers[eventName] = command.callbackId;
     [self tryToConsumeEvent];
 }
@@ -167,7 +167,7 @@
     if (eventName.length == 0) {
         return;
     }
-    
+
     [_subscribers removeObjectForKey:eventName];
 }
 
