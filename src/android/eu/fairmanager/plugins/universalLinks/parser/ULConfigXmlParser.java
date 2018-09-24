@@ -3,8 +3,8 @@ package eu.fairmanager.plugins.universalLinks.parser;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.nordnetab.cordova.ul.model.ULHost;
-import com.nordnetab.cordova.ul.model.ULPath;
+import eu.fairmanager.plugins.universalLinks.model.ULHost;
+import eu.fairmanager.plugins.universalLinks.model.ULPath;
 
 import org.apache.cordova.ConfigXmlParser;
 import org.xmlpull.v1.XmlPullParser;

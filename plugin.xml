@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<plugin id="fairmanager-cordova-plugin-universal-links" version="1.3.2"
+<plugin id="fairmanager-cordova-plugin-universal-links" version="1.3.3"
 	xmlns="http://apache.org/cordova/ns/plugins/1.0">
 
 	<name>Universal Links Plugin</name>
@@ -41,7 +41,7 @@
 		<source-file src="src/android/eu/fairmanager/plugins/universalLinks/parser/ULConfigXmlParser.java" target-dir="src/eu/fairmanager/plugins/universalLinks/parser/"/>
 		<source-file src="src/android/eu/fairmanager/plugins/universalLinks/parser/XmlTags.java" target-dir="src/eu/fairmanager/plugins/universalLinks/parser/"/>
 
-		<source-file src="src/android/eu/fairmanager/plugins/universalLinks/UniversalLinksPlugin.java" target-dir="src/eu/fairmanager/plugins/universalLinks/"/>
+		<source-file src="src/android/eu/fairmanager/plugins/universalLinks/UniversalLinks.java" target-dir="src/eu/fairmanager/plugins/universalLinks/"/>
 	</platform>
 
 	<platform name="ios">

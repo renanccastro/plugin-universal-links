@@ -5,10 +5,10 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.nordnetab.cordova.ul.js.JSAction;
-import com.nordnetab.cordova.ul.model.JSMessage;
-import com.nordnetab.cordova.ul.model.ULHost;
-import com.nordnetab.cordova.ul.parser.ULConfigXmlParser;
+import eu.fairmanager.plugins.universalLinks.js.JSAction;
+import eu.fairmanager.plugins.universalLinks.model.JSMessage;
+import eu.fairmanager.plugins.universalLinks.model.ULHost;
+import eu.fairmanager.plugins.universalLinks.parser.ULConfigXmlParser;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaArgs;
@@ -29,7 +29,7 @@ import java.util.Set;
  * Plugin main class.
  * Communicates with the JS side, handles launch intents and so on.
  */
-public class UniversalLinksPlugin extends CordovaPlugin {
+public class UniversalLinks extends CordovaPlugin {
 
     // list of hosts, defined in config.xml
     private List<ULHost> supportedHosts;
