@@ -1,5 +1,5 @@
 //
-//  CDVInvokedUrlCommand+CULPlugin.h
+//  CDVInvokedUrlCommand+CDVUniversalLinks.h
 //
 //  Created by Nikolay Demyankov on 08.12.15.
 //
@@ -9,7 +9,7 @@
 /**
  *  Category to get the event name from the request, that is sent from JS side.
  */
-@interface CDVInvokedUrlCommand (CULPlugin)
+@interface CDVInvokedUrlCommand (CDVUniversalLinks)
 
 /**
  *  Get event name from JS request.

@@ -1,18 +1,18 @@
 //
-//  CDVInvokedUrlCommand+CULPlugin.m
+//  CDVInvokedUrlCommand+CDVUniversalLinks.m
 //
 //  Created by Nikolay Demyankov on 08.12.15.
 //
 
-#import "CDVInvokedUrlCommand+CULPlugin.h"
+#import "CDVInvokedUrlCommand+CDVUniversalLinks.h"
 
-@implementation CDVInvokedUrlCommand (CULPlugin)
+@implementation CDVInvokedUrlCommand (CDVUniversalLinks)
 
 - (NSString *)eventName {
     if (self.arguments.count == 0) {
         return nil;
     }
-    
+
     return self.arguments[0];
 }
 

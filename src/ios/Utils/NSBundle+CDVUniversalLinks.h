@@ -1,5 +1,5 @@
 //
-//  NSBundle+CULPlugin.h
+//  NSBundle+CDVUniversalLinks.h
 //
 //  Created by Nikolay Demyankov on 15.09.15.
 //
@@ -9,7 +9,7 @@
 /**
  *  Helper category to work with NSBundle.
  */
-@interface NSBundle (CULPlugin)
+@interface NSBundle (CDVUniversalLinks)
 
 /**
  *  Path to the config.xml file in the project.

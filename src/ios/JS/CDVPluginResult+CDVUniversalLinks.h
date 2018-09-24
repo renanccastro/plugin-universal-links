@@ -1,5 +1,5 @@
 //
-//  CDVPluginResult+CULPlugin.h
+//  CDVPluginResult+CDVUniversalLinks.h
 //
 //  Created by Nikolay Demyankov on 15.09.15.
 //
@@ -10,7 +10,7 @@
 /**
  *  Category to simplify plugin result generation.
  */
-@interface CDVPluginResult (CULPlugin)
+@interface CDVPluginResult (CDVUniversalLinks)
 
 /**
  *  Get CDVPluginResult instance with information about the launch url that is send to JS.

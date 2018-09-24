@@ -1,5 +1,5 @@
 //
-//  CULPlugin.h
+//  CDVUniversalLinks.h
 //
 //  Created by Nikolay Demyankov on 14.09.15.
 //
@@ -10,7 +10,7 @@
 /**
  *  Plugin main class.
  */
-@interface CULPlugin : CDVPlugin
+@interface CDVUniversalLinks : CDVPlugin
 
 /**
  *  Subscribe to event.

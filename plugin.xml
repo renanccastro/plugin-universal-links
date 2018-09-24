@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<plugin id="fairmanager-cordova-plugin-universal-links" version="1.3.0"
+<plugin id="fairmanager-cordova-plugin-universal-links" version="1.3.1"
 	xmlns="http://apache.org/cordova/ns/plugins/1.0">
 
 	<name>Universal Links Plugin</name>
@@ -54,17 +54,17 @@
 
 		<hook src="hooks/iosBeforePrepareHook.js" type="before_prepare" />
 
-		<source-file src="src/ios/CULPlugin.m"/>
-		<header-file src="src/ios/CULPlugin.h"/>
+		<source-file src="src/ios/CDVUniversalLinks.m"/>
+		<header-file src="src/ios/CDVUniversalLinks.h"/>
 
-		<source-file src="src/ios/AppDelegate+CULPlugin.m"/>
-		<header-file src="src/ios/AppDelegate+CULPlugin.h"/>
+		<source-file src="src/ios/AppDelegate+CDVUniversalLinks.m"/>
+		<header-file src="src/ios/AppDelegate+CDVUniversalLinks.h"/>
 
-		<source-file src="src/ios/JS/CDVPluginResult+CULPlugin.m" target-dir="JS/"/>
-		<header-file src="src/ios/JS/CDVPluginResult+CULPlugin.h" target-dir="JS/"/>
+		<source-file src="src/ios/JS/CDVPluginResult+CDVUniversalLinks.m" target-dir="JS/"/>
+		<header-file src="src/ios/JS/CDVPluginResult+CDVUniversalLinks.h" target-dir="JS/"/>
 
-		<source-file src="src/ios/JS/CDVInvokedUrlCommand+CULPlugin.m" target-dir="JS/"/>
-		<header-file src="src/ios/JS/CDVInvokedUrlCommand+CULPlugin.h" target-dir="JS/"/>
+		<source-file src="src/ios/JS/CDVInvokedUrlCommand+CDVUniversalLinks.m" target-dir="JS/"/>
+		<header-file src="src/ios/JS/CDVInvokedUrlCommand+CDVUniversalLinks.h" target-dir="JS/"/>
 
 		<source-file src="src/ios/Model/CULHost.m" target-dir="Model/"/>
 		<header-file src="src/ios/Model/CULHost.h" target-dir="Model/"/>
@@ -81,7 +81,7 @@
 		<source-file src="src/ios/Parser/JSON/CULConfigJsonParser.m" target-dir="Parser/JSON/"/>
 		<header-file src="src/ios/Parser/JSON/CULConfigJsonParser.h" target-dir="Parser/JSON/"/>
 
-		<source-file src="src/ios/Utils/NSBundle+CULPlugin.m" target-dir="Utils/"/>
-		<header-file src="src/ios/Utils/NSBundle+CULPlugin.h" target-dir="Utils/"/>
+		<source-file src="src/ios/Utils/NSBundle+CDVUniversalLinks.m" target-dir="Utils/"/>
+		<header-file src="src/ios/Utils/NSBundle+CDVUniversalLinks.h" target-dir="Utils/"/>
 	</platform>
 </plugin>

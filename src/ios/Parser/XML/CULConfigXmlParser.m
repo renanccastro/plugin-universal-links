@@ -5,7 +5,7 @@
 //
 
 #import "CULConfigXmlParser.h"
-#import "NSBundle+CULPlugin.h"
+#import "NSBundle+CDVUniversalLinks.h"
 #import "CULPath.h"
 #import "CULXmlTags.h"
 
