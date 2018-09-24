@@ -1,4 +1,4 @@
-package com.nordnetab.cordova.ul.parser;
+package eu.fairmanager.plugins.universalLinks.parser;
 
 import android.content.Context;
 import android.text.TextUtils;

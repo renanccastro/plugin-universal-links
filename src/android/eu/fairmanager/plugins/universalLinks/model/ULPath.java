@@ -1,4 +1,4 @@
-package com.nordnetab.cordova.ul.model;
+package eu.fairmanager.plugins.universalLinks.model;
 
 /**
  * Created by Nikolay Demyankov on 09.09.15.
