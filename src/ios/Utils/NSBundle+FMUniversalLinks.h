@@ -1,5 +1,5 @@
 //
-//  NSBundle+CDVUniversalLinks.h
+//  NSBundle+FMUniversalLinks.h
 //
 //  Created by Nikolay Demyankov on 15.09.15.
 //
@@ -9,14 +9,14 @@
 /**
  *  Helper category to work with NSBundle.
  */
-@interface NSBundle (CDVUniversalLinks)
+@interface NSBundle (FMUniversalLinks)
 
 /**
  *  Path to the config.xml file in the project.
  *
  *  @return path to the config file
  */
-+ (NSString *)pathToCordovaConfigXml;
++ (NSString*)pathToCordovaConfigXml;
 
 
 @end

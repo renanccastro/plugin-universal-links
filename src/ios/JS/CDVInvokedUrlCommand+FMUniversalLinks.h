@@ -1,5 +1,5 @@
 //
-//  CDVInvokedUrlCommand+CDVUniversalLinks.h
+//  CDVInvokedUrlCommand+FMUniversalLinks.h
 //
 //  Created by Nikolay Demyankov on 08.12.15.
 //
@@ -9,13 +9,13 @@
 /**
  *  Category to get the event name from the request, that is sent from JS side.
  */
-@interface CDVInvokedUrlCommand (CDVUniversalLinks)
+@interface CDVInvokedUrlCommand (FMUniversalLinks)
 
 /**
  *  Get event name from JS request.
  *
  *  @return event name
  */
-- (NSString *)eventName;
+- (NSString*)eventName;
 
 @end

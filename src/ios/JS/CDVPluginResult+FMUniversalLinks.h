@@ -1,16 +1,16 @@
 //
-//  CDVPluginResult+CDVUniversalLinks.h
+//  CDVPluginResult+FMUniversalLinks.h
 //
 //  Created by Nikolay Demyankov on 15.09.15.
 //
 
 #import <Cordova/CDVPlugin.h>
-#import "CULHost.h"
+#import "FMULHost.h"
 
 /**
  *  Category to simplify plugin result generation.
  */
-@interface CDVPluginResult (CDVUniversalLinks)
+@interface CDVPluginResult (FMUniversalLinks)
 
 /**
  *  Get CDVPluginResult instance with information about the launch url that is send to JS.
@@ -20,9 +20,9 @@
  *
  *  @return instance of the CDVPluginResult
  */
-+ (instancetype)resultWithHost:(CULHost *)host originalURL:(NSURL *)originalURL;
++ (instancetype)resultWithHost:(FMULHost*)host originalURL:(NSURL*)originalURL;
 
-- (BOOL)isResultForEvent:(NSString *)eventName;
+- (BOOL)isResultForEvent:(NSString*)eventName;
 
 - (NSString *)eventName;
 

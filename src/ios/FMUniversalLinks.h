@@ -1,5 +1,5 @@
 //
-//  CDVUniversalLinks.h
+//  FMUniversalLinks.h
 //
 //  Created by Nikolay Demyankov on 14.09.15.
 //
@@ -10,21 +10,21 @@
 /**
  *  Plugin main class.
  */
-@interface CDVUniversalLinks : CDVPlugin
+@interface FMUniversalLinks : CDVPlugin
 
 /**
  *  Subscribe to event.
  *
  *  @param command command from js side with event name and callback id.
  */
-- (void)jsSubscribeForEvent:(CDVInvokedUrlCommand *)command;
+- (void)jsSubscribeForEvent:(CDVInvokedUrlCommand*)command;
 
 /**
  *  Unsubscribe from event.
  *
  *  @param command command from js side with event name
  */
-- (void)jsUnsubscribeFromEvent:(CDVInvokedUrlCommand *)command;
+- (void)jsUnsubscribeFromEvent:(CDVInvokedUrlCommand*)command;
 
 /**
  *  Try to hanlde application launch when user clicked on the link.
@@ -33,6 +33,6 @@
  *
  *  @return <code>true</code> - if this is a universal link and it is defined in config.xml; otherwise - <code>false</code>
  */
-- (BOOL)handleUserActivity:(NSUserActivity *)userActivity;
+- (BOOL)handleUserActivity:(NSUserActivity*)userActivity;
 
 @end
