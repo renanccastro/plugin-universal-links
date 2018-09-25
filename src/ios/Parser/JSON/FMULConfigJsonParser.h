@@ -1,22 +1,22 @@
 //
-//  CULConfigJsonParser.h
+//  FMULConfigJsonParser.h
 //
 //  Created by Nikolay Demyankov on 29.01.17.
 //
 
 #import <Foundation/Foundation.h>
-#import "CULHost.h"
+#import "FMULHost.h"
 
 /**
  *  JSON parser for plugin's preferences.
  */
-@interface CULConfigJsonParser : NSObject
+@interface FMULConfigJsonParser : NSObject
 
 /**
  *  Parse JSON config.
  *
  *  @return list of hosts, defined in the config file
  */
-+ (NSArray<CULHost *> *)parseConfig:(NSString *)pathToJsonConfig;
++ (NSArray<FMULHost*>*)parseConfig:(NSString*)pathToJsonConfig;
 
 @end
