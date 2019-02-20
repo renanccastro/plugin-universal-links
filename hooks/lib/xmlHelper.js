@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /*
 Small helper class to read/write from/to xml file.
 */

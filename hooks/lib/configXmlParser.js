@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /*
 Parser for config.xml file. Read plugin-specific preferences (from <universal-links> tag) as JSON object.
 */

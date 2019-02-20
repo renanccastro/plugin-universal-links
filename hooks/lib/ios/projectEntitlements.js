@@ -15,7 +15,6 @@ const ConfigXmlHelper    = require( "../configXmlHelper.js" );
 const ASSOCIATED_DOMAINS = "com.apple.developer.associated-domains";
 let context              = null;
 let projectName          = null;
-let entitlementsFilePath = null;
 
 module.exports = {
 	generateAssociatedDomainsEntitlements : generateEntitlements
@@ -32,10 +31,13 @@ module.exports = {
 function generateEntitlements( cordovaContext, pluginPreferences ) {
 	context = cordovaContext;
 
-	const currentEntitlements = getEntitlementsFileContent();
-	const newEntitlements     = injectPreferences( currentEntitlements, pluginPreferences );
+	const currentEntitlementsDebug   = getEntitlementsFileContent( "Debug" );
+	const currentEntitlementsRelease = getEntitlementsFileContent( "Release" );
+	const newEntitlementsDebug       = injectPreferences( currentEntitlementsDebug, pluginPreferences );
+	const newEntitlementsRelease     = injectPreferences( currentEntitlementsRelease, pluginPreferences );
 
-	saveContentToEntitlementsFile( newEntitlements );
+	saveContentToEntitlementsFile( newEntitlementsDebug, "Debug" );
+	saveContentToEntitlementsFile( newEntitlementsRelease, "Release" );
 }
 
 // endregion
@@ -47,9 +49,9 @@ function generateEntitlements( cordovaContext, pluginPreferences ) {
  *
  * @param {Object} content - data to save; JSON object that will be transformed into xml
  */
-function saveContentToEntitlementsFile( content ) {
+function saveContentToEntitlementsFile( content, type = "Debug" ) {
 	const plistContent = plist.build( content );
-	const filePath     = pathToEntitlementsFile();
+	const filePath     = pathToEntitlementsFile( type );
 
 	// ensure that file exists
 	mkpath.sync( path.dirname( filePath ) );
@@ -63,8 +65,8 @@ function saveContentToEntitlementsFile( content ) {
  *
  * @return {String} entitlements file content
  */
-function getEntitlementsFileContent() {
-	const pathToFile = pathToEntitlementsFile();
+function getEntitlementsFileContent( type = "Debug" ) {
+	const pathToFile = pathToEntitlementsFile( type );
 	let content;
 
 	try {
@@ -140,12 +142,8 @@ function domainsListEntryForHost( host ) {
  *
  * @return {String} absolute path to entitlements file
  */
-function pathToEntitlementsFile() {
-	if( entitlementsFilePath === undefined ) {
-		entitlementsFilePath = path.join( getProjectRoot(), "platforms", "ios", getProjectName(), "Resources", `${getProjectName()}.entitlements` );
-	}
-
-	return entitlementsFilePath;
+function pathToEntitlementsFile( type = "Debug" ) {
+	return path.join( getProjectRoot(), "platforms", "ios", getProjectName(), `Entitlements-${type}.plist` );
 }
 
 /**

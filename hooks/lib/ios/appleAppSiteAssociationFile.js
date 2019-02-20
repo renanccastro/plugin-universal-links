@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /*
 Script generates apple-app-site-association files: one for each domain, defined in config.xml.
 It is executed on 'after prepare' stage, usually when you execute 'cordova build'. Files are placed in 'ul_web_hooks/ios/' folder

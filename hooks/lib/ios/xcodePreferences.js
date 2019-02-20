@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable init-declarations */
 /*
 Script activates support for Universal Links in the application by setting proper preferences in the xcode project file.
