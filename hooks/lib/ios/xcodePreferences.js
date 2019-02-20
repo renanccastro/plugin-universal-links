@@ -34,9 +34,6 @@ function enableAssociativeDomainsCapability( cordovaContext ) {
 	// adjust preferences
 	activateAssociativeDomains( projectFile.xcode );
 
-	// add entitlements file to pbxfilereference
-	addPbxReference( projectFile.xcode );
-
 	// save changes
 	projectFile.write();
 }
@@ -86,47 +83,6 @@ function activateAssociativeDomains( xcodeProject ) {
 // endregion
 
 // region PBXReference methods
-
-/**
- * Add .entitlemets file into the project.
- *
- * @param {Object} xcodeProject - xcode project preferences; all changes are made in that instance
- */
-function addPbxReference( xcodeProject ) {
-	const fileReferenceSection = nonComments( xcodeProject.pbxFileReferenceSection() );
-	const entitlementsFileName = path.basename( pathToEntitlementsFile() );
-
-	if( isPbxReferenceAlreadySet( fileReferenceSection, entitlementsFileName ) ) {
-		console.log( "Entitlements file is in reference section." );
-		return;
-	}
-
-	console.log( "Entitlements file is not in references section, adding it" );
-	xcodeProject.addResourceFile( entitlementsFileName );
-}
-
-/**
- * Check if .entitlemets file reference already set.
- *
- * @param {Object} fileReferenceSection - PBXFileReference section
- * @param {String} entitlementsRelativeFilePath - relative path to entitlements file
- * @return true - if reference is set; otherwise - false
- */
-function isPbxReferenceAlreadySet( fileReferenceSection, entitlementsRelativeFilePath ) {
-	let isAlreadyInReferencesSection = false;
-	let uuid;
-	let fileRefEntry;
-
-	for( uuid in fileReferenceSection ) {
-		fileRefEntry = fileReferenceSection[ uuid ];
-		if( fileRefEntry.path && fileRefEntry.path.indexOf( entitlementsRelativeFilePath ) > -1 ) {
-			isAlreadyInReferencesSection = true;
-			break;
-		}
-	}
-
-	return isAlreadyInReferencesSection;
-}
 
 // region Xcode project file helpers
 
