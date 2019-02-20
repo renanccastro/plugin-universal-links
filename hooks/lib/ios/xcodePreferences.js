@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable init-declarations */
 /*
 Script activates support for Universal Links in the application by setting proper preferences in the xcode project file.
 Which is:
@@ -6,16 +8,16 @@ Which is:
 - path to .entitlements file added to Code Sign Entitlements preference
 */
 
-var path = require('path');
-var compare = require('node-version-compare');
-var ConfigXmlHelper = require('../configXmlHelper.js');
-var IOS_DEPLOYMENT_TARGET = '8.0';
-var COMMENT_KEY = /_comment$/;
-var context;
+const path                  = require( "path" );
+const compare               = require( "node-version-compare" );
+const ConfigXmlHelper       = require( "../configXmlHelper.js" );
+const IOS_DEPLOYMENT_TARGET = "8.0";
+const COMMENT_KEY           = /_comment$/;
+let context                 = null;
 
 module.exports = {
-  enableAssociativeDomainsCapability: enableAssociativeDomainsCapability
-}
+	enableAssociativeDomainsCapability : enableAssociativeDomainsCapability
+};
 
 // region Public API
 
@@ -24,19 +26,19 @@ module.exports = {
  *
  * @param {Object} cordovaContext - cordova context object
  */
-function enableAssociativeDomainsCapability(cordovaContext) {
-  context = cordovaContext;
+function enableAssociativeDomainsCapability( cordovaContext ) {
+	context = cordovaContext;
 
-  var projectFile = loadProjectFile();
+	const projectFile = loadProjectFile();
 
-  // adjust preferences
-  activateAssociativeDomains(projectFile.xcode);
+	// adjust preferences
+	activateAssociativeDomains( projectFile.xcode );
 
-  // add entitlements file to pbxfilereference
-  addPbxReference(projectFile.xcode);
+	// add entitlements file to pbxfilereference
+	addPbxReference( projectFile.xcode );
 
-  // save changes
-  projectFile.write();
+	// save changes
+	projectFile.write();
 }
 
 // endregion
@@ -50,34 +52,35 @@ function enableAssociativeDomainsCapability(cordovaContext) {
  *
  * @param {Object} xcodeProject - xcode project preferences; all changes are made in that instance
  */
-function activateAssociativeDomains(xcodeProject) {
-  var configurations = nonComments(xcodeProject.pbxXCBuildConfigurationSection());
-  var entitlementsFilePath = pathToEntitlementsFile();
-  var config;
-  var buildSettings;
-  var deploymentTargetIsUpdated;
+function activateAssociativeDomains( xcodeProject ) {
+	const configurations       = nonComments( xcodeProject.pbxXCBuildConfigurationSection() );
+	const entitlementsFilePath = pathToEntitlementsFile();
+	let config;
+	let buildSettings;
+	let deploymentTargetIsUpdated;
 
-  for (config in configurations) {
-    buildSettings = configurations[config].buildSettings;
-    buildSettings['CODE_SIGN_ENTITLEMENTS'] = '"' + entitlementsFilePath + '"';
+	for( config in configurations ) {
+		buildSettings                        = configurations[ config ].buildSettings;
+		buildSettings.CODE_SIGN_ENTITLEMENTS = "\"(PROJECT_DIR)/$(PROJECT_NAME)/Entitlements-$(CONFIGURATION).plist\"";
 
-    // if deployment target is less then the required one - increase it
-    if (buildSettings['IPHONEOS_DEPLOYMENT_TARGET']) {
-      if (compare(buildSettings['IPHONEOS_DEPLOYMENT_TARGET'], IOS_DEPLOYMENT_TARGET) == -1) {
-        buildSettings['IPHONEOS_DEPLOYMENT_TARGET'] = IOS_DEPLOYMENT_TARGET;
-        deploymentTargetIsUpdated = true;
-      }
-    } else {
-      buildSettings['IPHONEOS_DEPLOYMENT_TARGET'] = IOS_DEPLOYMENT_TARGET;
-      deploymentTargetIsUpdated = true;
-    }
-  }
+		// if deployment target is less then the required one - increase it
+		if( buildSettings.IPHONEOS_DEPLOYMENT_TARGET ) {
+			if( compare( buildSettings.IPHONEOS_DEPLOYMENT_TARGET, IOS_DEPLOYMENT_TARGET ) === -1 ) {
+				buildSettings.IPHONEOS_DEPLOYMENT_TARGET = IOS_DEPLOYMENT_TARGET;
+				deploymentTargetIsUpdated                = true;
+			}
 
-  if (deploymentTargetIsUpdated) {
-    console.log('IOS project now has deployment target set as: ' + IOS_DEPLOYMENT_TARGET);
-  }
+		} else {
+			buildSettings.IPHONEOS_DEPLOYMENT_TARGET = IOS_DEPLOYMENT_TARGET;
+			deploymentTargetIsUpdated                = true;
+		}
+	}
 
-  console.log('IOS project Code Sign Entitlements now set to: ' + entitlementsFilePath);
+	if( deploymentTargetIsUpdated ) {
+		console.log( `IOS project now has deployment target set as: ${IOS_DEPLOYMENT_TARGET}` );
+	}
+
+	console.log( `IOS project Code Sign Entitlements now set to: ${entitlementsFilePath}` );
 }
 
 // endregion
@@ -89,17 +92,17 @@ function activateAssociativeDomains(xcodeProject) {
  *
  * @param {Object} xcodeProject - xcode project preferences; all changes are made in that instance
  */
-function addPbxReference(xcodeProject) {
-  var fileReferenceSection = nonComments(xcodeProject.pbxFileReferenceSection());
-  var entitlementsFileName = path.basename(pathToEntitlementsFile());
+function addPbxReference( xcodeProject ) {
+	const fileReferenceSection = nonComments( xcodeProject.pbxFileReferenceSection() );
+	const entitlementsFileName = path.basename( pathToEntitlementsFile() );
 
-  if (isPbxReferenceAlreadySet(fileReferenceSection, entitlementsFileName)) {
-    console.log('Entitlements file is in reference section.');
-    return;
-  }
+	if( isPbxReferenceAlreadySet( fileReferenceSection, entitlementsFileName ) ) {
+		console.log( "Entitlements file is in reference section." );
+		return;
+	}
 
-  console.log('Entitlements file is not in references section, adding it');
-  xcodeProject.addResourceFile(entitlementsFileName);
+	console.log( "Entitlements file is not in references section, adding it" );
+	xcodeProject.addResourceFile( entitlementsFileName );
 }
 
 /**
@@ -109,20 +112,20 @@ function addPbxReference(xcodeProject) {
  * @param {String} entitlementsRelativeFilePath - relative path to entitlements file
  * @return true - if reference is set; otherwise - false
  */
-function isPbxReferenceAlreadySet(fileReferenceSection, entitlementsRelativeFilePath) {
-  var isAlreadyInReferencesSection = false;
-  var uuid;
-  var fileRefEntry;
+function isPbxReferenceAlreadySet( fileReferenceSection, entitlementsRelativeFilePath ) {
+	let isAlreadyInReferencesSection = false;
+	let uuid;
+	let fileRefEntry;
 
-  for (uuid in fileReferenceSection) {
-    fileRefEntry = fileReferenceSection[uuid];
-    if (fileRefEntry.path && fileRefEntry.path.indexOf(entitlementsRelativeFilePath) > -1) {
-      isAlreadyInReferencesSection = true;
-      break;
-    }
-  }
+	for( uuid in fileReferenceSection ) {
+		fileRefEntry = fileReferenceSection[ uuid ];
+		if( fileRefEntry.path && fileRefEntry.path.indexOf( entitlementsRelativeFilePath ) > -1 ) {
+			isAlreadyInReferencesSection = true;
+			break;
+		}
+	}
 
-  return isAlreadyInReferencesSection;
+	return isAlreadyInReferencesSection;
 }
 
 // region Xcode project file helpers
@@ -133,28 +136,28 @@ function isPbxReferenceAlreadySet(fileReferenceSection, entitlementsRelativeFile
  * @return {Object} projectFile - project file information
  */
 function loadProjectFile() {
-  var platform_ios;
-  var projectFile;
+	let platformIos;
+	let projectFile;
 
-  try {
-    // try pre-5.0 cordova structure
-    platform_ios = context.requireCordovaModule('cordova-lib/src/plugman/platforms')['ios'];
-    projectFile = platform_ios.parseProjectFile(iosPlatformPath());
-  } catch (e) {
-    // let's try cordova 5.0 structure
-    try {
-      platform_ios = context.requireCordovaModule('cordova-lib/src/plugman/platforms/ios');
-      projectFile = platform_ios.parseProjectFile(iosPlatformPath());
-    } catch(e) {
-      // try cordova 7.0 structure
-      var iosPlatformApi = require(path.join(iosPlatformPath(), '/cordova/Api'));
-      var projectFileApi = require(path.join(iosPlatformPath(), '/cordova/lib/projectFile.js'));
-      var locations = (new iosPlatformApi()).locations;
-      projectFile = projectFileApi.parse(locations);      
-    }
-  }
+	try {
+		// try pre-5.0 cordova structure
+		platformIos = context.requireCordovaModule( "cordova-lib/src/plugman/platforms" ).ios;
+		projectFile = platformIos.parseProjectFile( iosPlatformPath() );
+	} catch( e ) {
+		// let's try cordova 5.0 structure
+		try {
+			platformIos = context.requireCordovaModule( "cordova-lib/src/plugman/platforms/ios" );
+			projectFile = platformIos.parseProjectFile( iosPlatformPath() );
+		} catch( err ) {
+			// try cordova 7.0 structure
+			const IosPlatformApi = require( path.join( iosPlatformPath(), "/cordova/Api" ) );
+			const projectFileApi = require( path.join( iosPlatformPath(), "/cordova/lib/projectFile.js" ) );
+			const locations      = ( new IosPlatformApi() ).locations;
+			projectFile = projectFileApi.parse( locations );
+		}
+	}
 
-  return projectFile;
+	return projectFile;
 }
 
 /**
@@ -163,17 +166,17 @@ function loadProjectFile() {
  * @param {Object} obj - file object
  * @return {Object} file object without comments
  */
-function nonComments(obj) {
-  var keys = Object.keys(obj);
-  var newObj = {};
+function nonComments( obj ) {
+	const keys   = Object.keys( obj );
+	const newObj = {};
 
-  for (var i = 0, len = keys.length; i < len; i++) {
-    if (!COMMENT_KEY.test(keys[i])) {
-      newObj[keys[i]] = obj[keys[i]];
-    }
-  }
+	for( let i = 0, len = keys.length; i < len; i++ ) {
+		if( !COMMENT_KEY.test( keys[ i ] ) ) {
+			newObj[ keys[ i ] ] = obj[ keys[ i ] ];
+		}
+	}
 
-  return newObj;
+	return newObj;
 }
 
 // endregion
@@ -181,19 +184,19 @@ function nonComments(obj) {
 // region Path helpers
 
 function iosPlatformPath() {
-  return path.join(projectRoot(), 'platforms', 'ios');
+	return path.join( projectRoot(), "platforms", "ios" );
 }
 
 function projectRoot() {
-  return context.opts.projectRoot;
+	return context.opts.projectRoot;
 }
 
 function pathToEntitlementsFile() {
-  var configXmlHelper = new ConfigXmlHelper(context),
-    projectName = configXmlHelper.getProjectName(),
-    fileName = projectName + '.entitlements';
+	const configXmlHelper = new ConfigXmlHelper( context );
+	const projectName     = configXmlHelper.getProjectName();
+	const fileName        = `${projectName}.entitlements`;
 
-  return path.join(projectName, 'Resources', fileName);
+	return path.join( projectName, "Resources", fileName );
 }
 
 // endregion
