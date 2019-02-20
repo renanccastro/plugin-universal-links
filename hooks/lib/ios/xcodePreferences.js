@@ -69,6 +69,7 @@ function activateAssociativeDomains( xcodeProject ) {
 				buildSettings.IPHONEOS_DEPLOYMENT_TARGET = IOS_DEPLOYMENT_TARGET;
 				deploymentTargetIsUpdated                = true;
 			}
+
 		} else {
 			buildSettings.IPHONEOS_DEPLOYMENT_TARGET = IOS_DEPLOYMENT_TARGET;
 			deploymentTargetIsUpdated                = true;
