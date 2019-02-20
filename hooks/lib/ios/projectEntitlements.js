@@ -14,7 +14,6 @@ const mkpath             = require( "mkpath" );
 const ConfigXmlHelper    = require( "../configXmlHelper.js" );
 const ASSOCIATED_DOMAINS = "com.apple.developer.associated-domains";
 let context              = null;
-let projectName          = null;
 
 module.exports = {
 	generateAssociatedDomainsEntitlements : generateEntitlements
@@ -161,12 +160,8 @@ function getProjectRoot() {
  * @return {String} project name
  */
 function getProjectName() {
-	if( projectName === undefined ) {
-		const configXmlHelper = new ConfigXmlHelper( context );
-		projectName = configXmlHelper.getProjectName();
-	}
-
-	return projectName;
+	const configXmlHelper = new ConfigXmlHelper( context );
+	return configXmlHelper.getProjectName();
 }
 
 // endregion

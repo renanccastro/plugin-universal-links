@@ -55,7 +55,7 @@ ConfigXmlHelper.prototype.getPackageName = platform => {
 			break;
 		}
 	}
-	if( packageName === undefined || packageName.length === 0 ) {
+	if( packageName.length === 0 ) {
 		packageName = config.packageName();
 	}
 
