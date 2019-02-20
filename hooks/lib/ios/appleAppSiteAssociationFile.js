@@ -25,7 +25,6 @@ const rimraf                = require( "rimraf" );
 const ConfigXmlHelper       = require( "../configXmlHelper.js" );
 const IOS_TEAM_ID           = "<YOUR_TEAM_ID_FROM_MEMBER_CENTER>";
 const ASSOCIATION_FILE_NAME = "apple-app-site-association";
-let bundleId                = null;
 let context                 = null;
 
 module.exports = {
@@ -163,12 +162,8 @@ function getProjectRoot() {
  * @return {String} bundle id
  */
 function getBundleId() {
-	if( bundleId === undefined ) {
-		const configXmlHelper = new ConfigXmlHelper( context );
-		bundleId = configXmlHelper.getPackageName( "ios" );
-	}
-
-	return bundleId;
+	const configXmlHelper = new ConfigXmlHelper( context );
+	return configXmlHelper.getPackageName( "ios" );
 }
 
 // endregion
